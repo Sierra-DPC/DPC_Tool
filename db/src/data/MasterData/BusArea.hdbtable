@@ -1,0 +1,6 @@
+COLUMN TABLE "BusArea" (
+     "BusArea" NVARCHAR(6) comment 'Business Area',
+     "Description" NVARCHAR(30) comment 'Description',
+	PRIMARY KEY ("BusArea" )) comment 'BusArea'
+	UNLOAD PRIORITY 5 AUTO MERGE
+	

@@ -1,0 +1,8 @@
+COLUMN TABLE "TableFields" (
+	"BUS_AREA"	NVARCHAR(12) comment 'Business Module',
+	"OBJECT_ID"	NVARCHAR(4)  comment 'Business Object',
+	"RULE"      NVARCHAR(3)  comment 'Rule number',
+	"SEQNO"		NVARCHAR(10) comment 'Row Number',
+	"NAME"      NVARCHAR(40) comment 'Field Name',
+	PRIMARY KEY ("BUS_AREA", "OBJECT_ID", "RULE", "SEQNO", 	"NAME" )) comment 'TableFields'
+	UNLOAD PRIORITY 5 AUTO MERGE

@@ -1,0 +1,5 @@
+	service {
+	    "ConfigDupCheck" as "ConfigDupCheck" 
+	    create using 
+		"xsjs:CfgDupChkCreateMethod.xsjslib::CfgCreate";
+	}

@@ -1,0 +1,3 @@
+service {
+	"Vendor" as "Vendor";
+}

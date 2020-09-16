@@ -1,0 +1,43 @@
+{
+	"format_version": 1,
+	"imports": [{
+			"target_table": "ConfigDupCheck",
+			"source_data": {
+				"data_type": "CSV",
+				"file_name": "Config.csv",
+				"has_header": true
+			},
+			"import_settings": {
+				"include_filter": [],
+				"import_columns": [
+					"BUS_AREA",
+					"OBJECT_ID",
+					"RULE",
+					"SEQNO",
+					"NAME"
+				]
+			}
+		},
+
+		{
+			"target_table": "TableFields",
+			"source_data": {
+				"data_type": "CSV",
+				"file_name": "TableFields.csv",
+				"has_header": true
+			},
+			"import_settings": {
+				"include_filter": [],
+				"import_columns": [
+					"BUS_AREA",
+					"OBJECT_ID",
+					"RULE",
+					"SEQNO",
+					"NAME"
+				]
+			}
+		}
+
+	]
+
+}

@@ -1,0 +1,5 @@
+	COLUMN TABLE "SYSID" (
+     "RELEASE" NVARCHAR(12) comment 'System ID',
+	PRIMARY KEY ("RELEASE" )) comment 'System ID'
+	UNLOAD PRIORITY 5 AUTO MERGE
+	

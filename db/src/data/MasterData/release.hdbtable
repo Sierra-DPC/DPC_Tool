@@ -1,0 +1,6 @@
+COLUMN TABLE "Release" (
+     "RELEASE" NVARCHAR(12) comment 'Release',
+     "DESCRIPTION" NVARCHAR(30) comment 'Description',
+	PRIMARY KEY ("RELEASE" )) comment 'Release'
+	UNLOAD PRIORITY 5 AUTO MERGE
+	

@@ -1,0 +1,22 @@
+COLUMN TABLE "Vendor" (
+	"SYS_NAME"	NVARCHAR(12) comment 'System Name',
+	"RELEASE"	NVARCHAR(12) comment 'Release number',
+	"BUS_AREA"	NVARCHAR(12) comment 'Business Module',
+	"OBJECT_ID"	NVARCHAR(4) comment 'Business Object',
+	"SEQNO"		NVARCHAR(10) comment 'Row Number',
+	"LIFNR"		NVARCHAR(80) comment 'Vendor Number',
+	"BP_GROUP"	NVARCHAR(80) comment 'BP Group',
+	"NAME_FIRST"	NVARCHAR(40) comment 'Vedor Name',
+	"HOUSE_NUM1"	NVARCHAR(10) comment 'Address Line 1',
+	"STREET"	NVARCHAR(60) comment 'Address Line 2',
+	"CITY1"		NVARCHAR(40) comment 'City',
+	"REGION"	NVARCHAR(40) comment 'State',
+	"ZIP" 		NVARCHAR(80) comment 'Zip',
+	"COUNTRY"	NVARCHAR(80) comment 'Country',
+	"PROVINCE"	NVARCHAR(80) comment 'Province',
+	"AREA_CODE"	NVARCHAR(80) comment 'Area Code',
+	"AKONT"		NVARCHAR(80) comment 'Reconciliation Account',
+	"OPERATING_UNIT" NVARCHAR(4) comment 'Operationg Unit',	
+	"BUKRS"		NVARCHAR(80) comment 'Company Code',
+	PRIMARY KEY ("SYS_NAME", "RELEASE", "BUS_AREA", "OBJECT_ID", "SEQNO" )) comment 'Vendor'
+	UNLOAD PRIORITY 5 AUTO MERGE

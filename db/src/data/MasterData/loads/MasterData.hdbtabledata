@@ -1,0 +1,79 @@
+{
+	"format_version": 1,
+	"imports": [{
+			"target_table": "Release",
+			"source_data": {
+				"data_type": "CSV",
+				"file_name": "release.csv",
+				"has_header": true
+			},
+			"import_settings": {
+				"include_filter": [],
+				"import_columns": [
+					"RELEASE"
+				]
+			}
+		},
+		{
+			"target_table": "SYSID",
+			"source_data": {
+				"data_type": "CSV",
+				"file_name": "systemid.csv",
+				"has_header": true
+			},
+			"import_settings": {
+				"include_filter": [],
+				"import_columns": [
+					"RELEASE"
+				]
+			}
+		}, {
+			"target_table": "Vendor",
+			"source_data": {
+				"data_type": "CSV",
+				"file_name": "vendor.csv",
+				"has_header": true
+			},
+			"import_settings": {
+				"include_filter": [],
+				"import_columns": [
+					"SYS_NAME",
+					"RELEASE",
+					"BUS_AREA",
+					"OBJECT_ID",
+					"SEQNO",
+					"LIFNR",
+					"BP_GROUP",
+					"NAME_FIRST",
+					"HOUSE_NUM1",
+					"STREET",
+					"CITY1",
+					"REGION",
+					"ZIP",
+					"COUNTRY",
+					"PROVINCE",
+					"AREA_CODE",
+					"AKONT",
+					"OPERATING_UNIT",
+					"BUKRS"
+				]
+			}
+		},
+		{
+			"target_table": "BusArea",
+			"source_data": {
+				"data_type": "CSV",
+				"file_name": "BusArea.csv",
+				"has_header": true
+			},
+			"import_settings": {
+				"include_filter": [],
+				"import_columns": [
+					"BusArea",
+					"Description"
+				]
+			}
+		}
+	]
+
+}
