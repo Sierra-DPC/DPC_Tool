@@ -25,6 +25,17 @@ modules:
           url: '${default-url}'
     requires:
       - name: DPC_Tool-hdi-container
+  - name: xsjs
+    type: nodejs
+    path: xsjs
+    provides:
+      - name: xsjs_api
+        properties:
+          url: '${default-url}'
+    requires:
+      - name: DPC_Tool-hdi-container
+      - name: DPC_Tool-uaa
+      - name: db
   - name: web
     type: html5
     path: web
@@ -37,18 +48,6 @@ modules:
           name: xsjs_api
           url: '~{url}'
           forwardAuthToken: true
-      - name: DPC_Tool-ui5
-  - name: xsjs
-    type: nodejs
-    path: xsjs
-    provides:
-      - name: xsjs_api
-        properties:
-          url: '${default-url}'
-    requires:
-      - name: DPC_Tool-hdi-container
-      - name: DPC_Tool-uaa
-      - name: db
 resources:
   - name: DPC_Tool-hdi-container
     type: com.sap.xs.hdi-container
@@ -58,11 +57,6 @@ resources:
     type: com.sap.xs.uaa-space
     parameters:
       path: /xs-security.json
-  - name: DPC_Tool-ui5
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service: sapui5_sb
-      service-plan: sapui5-1.60
   - name: di-builder-configuration
     properties:
       BUILDER_MAX_EXECUTION_TIME: 60000
