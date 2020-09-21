@@ -1,5 +1,5 @@
 {
-	"xsappname": "Test-00",
+	"xsappname": "DPC_Tool-00",
 	"scopes": [{
 		"name": "$XSAPPNAME.Display",
 		"description": "display"

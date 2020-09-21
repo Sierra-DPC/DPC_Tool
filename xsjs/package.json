@@ -15,7 +15,7 @@
     "test": "node testrun.js"
   },
   "engines": {
-    "node": "8.x"
+    "node": "^10 || ^12"
   },
   "version": "1.0.0"
 }

@@ -37,6 +37,7 @@ modules:
           name: xsjs_api
           url: '~{url}'
           forwardAuthToken: true
+      - name: DPC_Tool-ui5
   - name: xsjs
     type: nodejs
     path: xsjs
@@ -57,3 +58,11 @@ resources:
     type: com.sap.xs.uaa-space
     parameters:
       path: /xs-security.json
+  - name: DPC_Tool-ui5
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: sapui5_sb
+      service-plan: sapui5-1.60
+  - name: di-builder-configuration
+    properties:
+      BUILDER_MAX_EXECUTION_TIME: 60000

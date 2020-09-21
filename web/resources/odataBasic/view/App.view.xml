@@ -1,0 +1,436 @@
+<mvc:View
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:dnd="sap.ui.core.dnd"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:smartList="sap.ui.comp.smartlist"
+	xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	 xmlns:c="sap.ui.commons"
+	 xmlns:m="sap.m"
+	controllerName="opensap.odataBasic.controller.App" height="100%">
+		<Page title="Data Profiling Tool">
+<content>
+<c:TabStrip id="ts1">
+<c:tabs> <!-- sap.ui.commons.Tab -->
+<c:Tab id="tb1" text="Data management">
+<c:content>
+	<VBox fitContainer="true">
+				<smartFilterBar:SmartFilterBar id="smartFilterBar"
+						useToolbar="false" 
+						persistencyKey="UniqueAndStablePersistencyKey"
+						considerSelectionVariants="true"
+						assignedFiltersChanged="onAssignedFiltersChanged" >
+						
+					<smartFilterBar:controlConfiguration>
+					<smartFilterBar:ControlConfiguration 	key="Sysid" label="System"	groupId="_BASIC" index="0">
+					<smartFilterBar:customControl>
+					<MultiComboBox id="Sysid" items="{/Sysid}" customData:hasValue="true" templateShareable="true">
+        			<core:ListItem key="{RELEASE}" text="{RELEASE}" /></MultiComboBox>
+					</smartFilterBar:customControl>
+					</smartFilterBar:ControlConfiguration>
+				
+					<smartFilterBar:ControlConfiguration 	key="RELEASE" label="Release"	groupId="_BASIC" index="1">
+					<smartFilterBar:customControl>
+					<MultiComboBox id="Release" items="{/Release}" customData:hasValue="true" templateShareable="true"> 
+            		<core:ListItem key="{RELEASE}" text="{RELEASE}" /></MultiComboBox>
+					</smartFilterBar:customControl>
+					</smartFilterBar:ControlConfiguration>
+					
+					<smartFilterBar:ControlConfiguration 	key="BUS_AREA" label="Bus_Area"	groupId="_BASIC" index="2">
+					<smartFilterBar:customControl>
+					<!--<MultiComboBox id="Area" items="{/Vendor}" customData:hasValue="true" templateShareable="true">-->
+        			<!--<core:ListItem key="{BUS_AREA}" text="{BUS_AREA}" />-->
+        				<MultiComboBox id="Area" customData:hasValue="true" templateShareable="true">
+        				<core:Item key="1" text="FICO"/>
+        					<core:Item key="2" text="MM"/>
+        						<core:Item key="3" text="SD"/>
+	        			</MultiComboBox>
+					</smartFilterBar:customControl>
+					</smartFilterBar:ControlConfiguration>
+					
+					<smartFilterBar:ControlConfiguration 	key="OBJECT_ID" label="Object "
+					groupId="_BASIC" visibleInAdvancedArea="true" index="3">
+					<smartFilterBar:customControl>
+					<!--<MultiComboBox id="OBJECT_ID" items="{/Vendor}" customData:hasValue="true" templateShareable="true">-->
+     <!--       		<core:ListItem key="{OBJECT_ID}" text="{OBJECT_ID}" />  </MultiComboBox>-->
+     
+     					<MultiComboBox id="objid">
+        				<core:Item key="1" text="GL"/>
+        				<core:Item key="2" text="CC"/>
+        				<core:Item key="3" text="VN"/>
+	        			</MultiComboBox>
+					</smartFilterBar:customControl>
+					</smartFilterBar:ControlConfiguration>
+					
+		<smartFilterBar:ControlConfiguration key="Validated" />
+			</smartFilterBar:controlConfiguration>
+					<smartFilterBar:layoutData>
+				<FlexItemData shrinkFactor="0"/>
+			</smartFilterBar:layoutData>
+		</smartFilterBar:SmartFilterBar>
+
+		<smartTable:SmartTable id="bpTable"  visible="false" entitySet="Vendor" smartFilterId="smartFilterBar" tableType="Table" beforeRebindTable="onBeforeRebindTable"
+			showTablePersonalisation="false" useExportToExcel="true"  useVariantManagement="false" useTablePersonalisation="true" header="Vendor Items" showRowCount="true" >
+			<smartTable:layoutData>	<FlexItemData growFactor="1" baseSize="0%"/>
+		</smartTable:layoutData>
+			<OverflowToolbar design="Transparent">
+				<ToolbarSpacer/>
+				<OverflowToolbarButton text="Test"/>
+				<OverflowToolbarButton icon="sap-icon://sort" tooltip="Sort" text="Sort" press="onSort"/>
+				<OverflowToolbarButton icon="sap-icon://filter" tooltip="Filter" text="Filter" press="onFilter"/>
+				<OverflowToolbarButton icon="sap-icon://group-2" tooltip="Group" text="Group" press="onGroup"/>
+				<OverflowToolbarButton icon="sap-icon://action-settings" tooltip="Column Settings" text="Column Settings" press="onColumns"/>
+			</OverflowToolbar>
+		</smartTable:SmartTable>
+	</VBox>
+</c:content>
+</c:Tab>
+
+<c:Tab id="tb2" text="Status Report">
+<c:content>
+</c:content>
+</c:Tab>
+<c:Tab id="tb3" text="Configuration">
+<c:content>
+	<VBox fitContainer="true">
+				<smartFilterBar:SmartFilterBar id="smartFilterBar1"
+						useToolbar="false" 
+						persistencyKey="UniqueAndStablePersistencyKey"
+						considerSelectionVariants="true"
+						assignedFiltersChanged="onAssignedFiltersChanged" >
+					
+					<smartFilterBar:controlConfiguration>
+					<smartFilterBar:ControlConfiguration 	key="Configuration" label="Configuration"	groupId="_BASIC" index="0">
+					<smartFilterBar:customControl>
+					<!--<MultiComboBox id="Area1" items="{/Vendor}" customData:hasValue="true" templateShareable="true">-->
+     <!--   			<core:ListItem key="{BUS_AREA}" text="{BUS_AREA}" /></MultiComboBox>-->
+     	<MultiComboBox id="Configuration">
+        				<core:Item key="1" text="Duplicate Check"/>
+        				<core:Item key="2" text="Completeness"/>
+	        			</MultiComboBox>
+					</smartFilterBar:customControl>
+					</smartFilterBar:ControlConfiguration>
+				
+					<smartFilterBar:ControlConfiguration 	key="BUS_AREA" label="Bus_Area"	groupId="_BASIC"  index="1">
+					<smartFilterBar:customControl>
+					<!--<MultiComboBox id="Area1" items="{/Vendor}" customData:hasValue="true" templateShareable="true">-->
+     <!--   			<core:ListItem key="{BUS_AREA}" text="{BUS_AREA}" /></MultiComboBox>-->
+     				<MultiComboBox id="Area1">
+     				<core:Item key="1" text="FICO"/>
+     				<core:Item key="2" text="MM"/>
+        			<core:Item key="3" text="SD"/>
+	        		</MultiComboBox>
+					</smartFilterBar:customControl>
+					</smartFilterBar:ControlConfiguration>
+					
+					<smartFilterBar:ControlConfiguration 	key="OBJECT_ID1" label="Object " index="2"
+					groupId="_BASIC" visibleInAdvancedArea="true">
+					<smartFilterBar:customControl>
+					<!--<MultiComboBox id="OBJECT_ID1" items="{/Vendor}" customData:hasValue="true" templateShareable="true">-->
+     <!--       		<core:ListItem key="{OBJECT_ID}" text="{OBJECT_ID}" />  </MultiComboBox>-->
+    				<MultiComboBox id="OBJECT_ID1">
+        				<core:Item key="1" text="GL"/>
+        					<core:Item key="2" text="BP-Gen"/>
+        						<core:Item key="3" text="VN"/>
+        							<core:Item key="4" text="Mat-MM"/>
+	        			</MultiComboBox>
+					</smartFilterBar:customControl>
+					</smartFilterBar:ControlConfiguration>
+					
+					<smartFilterBar:ControlConfiguration 	key="Rule" label="Rule "
+					groupId="_BASIC" visibleInAdvancedArea="true" index="3">
+					<smartFilterBar:customControl>
+					<!--<MultiComboBox id="OBJECT_ID1" items="{/Vendor}" customData:hasValue="true" templateShareable="true">-->
+     <!--       		<core:ListItem key="{OBJECT_ID}" text="{OBJECT_ID}" />  </MultiComboBox>-->
+    				<MultiComboBox id="Rule">
+        				<core:Item key="1" text="1"/>
+        					<core:Item key="2" text="2"/>
+        						<core:Item key="3" text="3"/>
+	        			</MultiComboBox>
+					</smartFilterBar:customControl>
+					</smartFilterBar:ControlConfiguration>
+				
+					<smartFilterBar:ControlConfiguration key="Validated" />
+					</smartFilterBar:controlConfiguration>
+			<!-- layout data used to make the table growing but the filter bar fixed -->
+			<smartFilterBar:layoutData>
+				<FlexItemData shrinkFactor="0"/>
+			</smartFilterBar:layoutData>
+		</smartFilterBar:SmartFilterBar>
+		
+		
+	<HBox id="hbb1"> 
+		
+	<VBox id="vbb1" width="200px" >
+		<smartList:SmartList id="ItemsST" width="400px" entitySet="TableFields" header="Fields in Source Table" showRowCount="true" showFullScreenButton="true" enableAutoBinding="true"
+		selectFields="NAME">
+	
+		<smartList:listItemTemplate>
+			<StandardListItem title="{NAME}" 
+			 />
+		</smartList:listItemTemplate>
+	</smartList:SmartList>
+				
+			</VBox>	
+			<VBox id="vbb4">
+					<Button icon="sap-icon://arrow-right" width="100px" tooltip="Add" text="Add" press="onAdd"/>
+				<Button icon="sap-icon://arrow-left" width="100px" tooltip="Remove" text="Remove" press="onRemove"/>
+			</VBox>
+			<VBox id="vbb2">
+				<smartTable:SmartTable id="dpTable" width="400px" entitySet="ConfigDupCheck"  tableType="Table" beforeRebindTable="onBeforeRebindTable"
+			showTablePersonalisation="false" 
+			useExportToExcel="true"  useVariantManagement="false" useTablePersonalisation="true" header="Fields used to check Duplicate" showRowCount="true" >
+			<smartTable:layoutData>
+					<FlexItemData growFactor="1" baseSize="0%"/>
+				</smartTable:layoutData>
+				</smartTable:SmartTable>
+		
+	<!--		<smartList:SmartList id="dpTable" width="300px" entitySet="ConfigDupCheck" header="Fields used to check Duplicate"-->
+	<!--	showRowCount="true" showFullScreenButton="true" enableAutoBinding="true"-->
+	<!--	selectFields="NAME">-->
+	<!--	<smartList:listItemTemplate>-->
+	<!--		<StandardListItem title="{NAME}" info="{BUS_AREA}"-->
+	<!--			description="{SEQNO}" -->
+	<!--		 />-->
+	<!--	</smartList:listItemTemplate>-->
+	<!--</smartList:SmartList>-->
+			</VBox>	
+			
+			
+				<VBox id="vbb3">
+						<Button id = "s1" text=" Save " width="100px" press="onPress" />
+				</VBox>
+			</HBox>	
+		</VBox>
+</c:content>
+
+</c:Tab>
+<c:Tab id="tb4" text="Test Report">
+<c:content>
+	<HBox  >
+	<Table
+		id="table1"
+		mode="SingleSelectMaster"
+		growing="true"
+		growingThreshold="10"
+		beforeOpenContextMenu="onBeforeOpenContextMenu"
+		items="{
+			path: '/TableFields'
+		
+		}">
+		<contextMenu>
+			<Menu>
+				<MenuItem text="Move to Selected Fields" press="moveToSelectedFieldsTable" />
+			</Menu>
+		</contextMenu>
+		<headerToolbar>
+			<OverflowToolbar>
+				<Title text="Available Fields" />
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column>
+				<Text text="Name" />
+		
+			</Column>
+		</columns>
+		<dragDropConfig>
+			<dnd:DragInfo
+				groupName="available2selected"
+				sourceAggregation="items" />
+			<dnd:DropInfo
+				groupName="selected2available"
+				drop="onDropAvailableFieldsTable" />
+		</dragDropConfig>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Text text="{NAME}" />
+				
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+				<VBox justifyContent="Center" class="sapUiTinyMarginBeginEnd">
+					<Button
+						class="sapUiTinyMarginBottom"
+						icon="sap-icon://navigation-right-arrow"
+						tooltip="Move to selected"
+						press="moveToSelectedFieldsTable"/>
+					<Button
+						icon="sap-icon://navigation-left-arrow"
+						tooltip="Move to available"
+						press="moveToAvailableFieldsTable"/>
+				</VBox>
+	<Table
+		id="table"
+		mode="SingleSelectMaster"
+		growing="true"
+		growingThreshold="10"
+		beforeOpenContextMenu="onBeforeOpenContextMenu"
+		items="{
+			path: '/ConfigDupCheck'
+		
+		}">
+		<contextMenu>
+			<Menu>
+				<MenuItem text="Move to Selected Fields" press="moveToSelectedFieldsTable" />
+			</Menu>
+		</contextMenu>
+		<headerToolbar>
+			<OverflowToolbar>
+				<Title text="Selected Fields" />
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column>
+				<Text text="Name" />
+			</Column>
+			
+		</columns>
+		<dragDropConfig>
+			<dnd:DragInfo
+				groupName="available2selected"
+				sourceAggregation="items" />
+			<dnd:DropInfo
+				groupName="selected2available"
+				drop="onDropAvailableFieldsTable" />
+		</dragDropConfig>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Text text="{NAME}" />
+				
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+	</HBox>
+</c:content>
+</c:Tab>
+
+<c:Tab id="tb5" text="Test">
+<c:content>
+	
+	<m:HBox>
+				<Table
+					id="table10"
+					selectionMode="Single"
+					ariaLabelledBy="title"
+					items="{
+						path: '/TableFields',
+						filters: {path: 'Rank', operator: 'EQ', value1: '0'}
+					
+					}"
+					visibleRowCount="10">
+					<headerToolbar>
+						<OverflowToolbar id="infobar">
+							<Title id="title" text="Available Fields"/>
+						</OverflowToolbar>
+					</headerToolbar>
+					<columns>
+						<Column
+							sortProperty="NAME"
+							filterProperty="NAME">
+							<Text text="Name" />
+						
+						</Column>
+					
+					</columns>
+					<dragDropConfig>
+						<dnd:DragInfo
+							groupName="moveToTable2"
+							sourceAggregation="items"
+							dragStart="onDragStart" />
+						<dnd:DropInfo
+							groupName="moveToTable1"
+							drop="onDropTable1" />
+					</dragDropConfig>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{NAME}" wrapping="false" />
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+				<m:VBox justifyContent="Center" class="sapUiTinyMarginBeginEnd">
+					<Button
+						class="sapUiTinyMarginBottom"
+						icon="sap-icon://navigation-right-arrow"
+						tooltip="Move to selected"
+						press="moveToTable2"/>
+					<Button
+						icon="sap-icon://navigation-left-arrow"
+						tooltip="Move to available"
+						press="moveToTable1"/>
+				</m:VBox>
+				<Table
+					id="table20"
+					selectionMode="Single"
+					ariaLabelledBy="title2"
+					items="{
+						path: '/TableFields',
+							filters: {path: 'Rank', operator: 'GT', value1: '0'},
+						sorter: {path: 'Rank', descending: true}
+					
+					}"
+					visibleRowCount="10"
+					noData="Please drag-and-drop products here.">
+				<headerToolbar>
+						<m:OverflowToolbar>
+							<m:Title id="title2" text="Selected Fields"/>
+							<m:ToolbarSpacer/>
+							<m:Button
+								icon="sap-icon://navigation-up-arrow"
+								tooltip="Move up"
+								press="moveUp"/>
+							<m:Button
+								icon="sap-icon://navigation-down-arrow"
+								tooltip="Move down"
+								press="moveDown"/>
+						</m:OverflowToolbar>
+					</headerToolbar>
+					<columns>
+						<Column>
+							<Text text="Name" />
+												</Column>
+						
+					</columns>
+					<dragDropConfig>
+						<dnd:DragInfo
+							groupName="moveToTable1"
+							sourceAggregation="items"
+							dragStart="onDragStart" />
+						<dnd:DropInfo
+							groupName="moveToTable2"
+							targetAggregation="items"
+							dropPosition="Between"
+							drop="onDropTable2" />
+						<dnd:DragDropInfo
+							sourceAggregation="items"
+							targetAggregation="items"
+							dropPosition="Between"
+							dragStart="onDragStart"
+							drop="onDropTable2" />
+					</dragDropConfig>
+					
+						<items>
+			<ColumnListItem>
+				<cells>
+					<Text text="{NAME}" wrapping="false" />
+				
+				</cells>
+			</ColumnListItem>
+		</items>
+				</Table>
+			</m:HBox>
+</c:content>
+</c:Tab>
+</c:tabs>
+</c:TabStrip>
+</content>
+</Page>
+</mvc:View>	
